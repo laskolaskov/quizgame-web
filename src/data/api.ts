@@ -1,4 +1,4 @@
-import storage from "./storage"
+import app from "./app"
 
 const base = 'https://opentdb.com/'
 
@@ -6,11 +6,11 @@ export async function getQuestions() {
     let url = `${base}api.php?type=multiple`
 
     const params = {
-        ...storage.input
+        ...app.input
     }
 
     const categories = {
-        ...storage.state.categories
+        ...app.state.categories
     }
 
     /**
@@ -45,6 +45,7 @@ export async function getQuestions() {
         return await res.json()
     } catch (e) {
         console.log(e)
+        app.interface.setError()
     }
 }
 
@@ -60,5 +61,6 @@ export async function getCategories() {
         return await res.json()
     } catch (e) {
         console.error(e)
+        app.interface.setError()
     }
 }

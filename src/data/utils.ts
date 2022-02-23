@@ -4,6 +4,8 @@ import { CategoryResponse, QuestionResponse } from "./types";
  * Utility functions
  */
 
+export const sleep = async (t: number) => new Promise((resolve) => setTimeout(resolve, t))
+
 export function shuffle(arr: any[]): any[] {
     let i = arr.length, j, temp;
     while (--i) {

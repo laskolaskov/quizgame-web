@@ -10,16 +10,17 @@ const data: Data = {
         difficulty: 'all'
     },
     categories: [],
-    questions: []
+    questions: [],
+    interface: {
+        error: false
+    },
+    started: false
 }
 
 const state = reactive(data)
 
 async function startGame() {
-    await loadCategories()
-    await loadQuestions()
-    console.log('categories :: ', state.categories)
-    console.log('questions ::', state.questions)
+    state.started = true
 }
 
 async function loadCategories() {
@@ -38,11 +39,19 @@ async function loadQuestions() {
     }
 }
 
-const storage = {
+function setError() {
+    state.interface.error = true
+}
+
+const app = {
     state: readonly(state),
     input: state.input,
     startGame,
-    loadCategories
+    loadCategories,
+    loadQuestions,
+    interface: {
+        setError,
+    }
 }
 
-export default storage
+export default app

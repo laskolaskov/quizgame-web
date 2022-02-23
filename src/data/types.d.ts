@@ -1,7 +1,11 @@
 export interface Data {
     input: UserInput,
     categories: Category[],
-    questions: any
+    questions: any,
+    interface: {
+        error: boolean
+    },
+    started: boolean
 }
 
 export interface UserInput {
@@ -16,7 +20,7 @@ export interface Category {
 }
 
 export interface CategoryResponse {
-    trivia_categories : Category[]
+    trivia_categories: Category[]
 }
 
 export interface Question {

@@ -1,32 +1,95 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
+import { store } from '../data/store'
 </script>
 
 <template>
     <form>
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <label for="amount" class="form-label">Amount</label>
             <input
-                type="email"
+                type="number"
                 class="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
+                id="amount"
+                aria-describedby="amountHelp"
+                v-model="store.input.amount"
+                min="0"
+                max="100"
             />
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            <div
+                id="amountHelp"
+                class="form-text"
+            >The amount of questions you want to answer. Default is 10.</div>
         </div>
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" />
+            <label for="category" class="form-label">Category</label>
+            <input
+                type="text"
+                class="form-control"
+                id="category"
+                aria-describedby="cetegoryHelp"
+                v-model="store.input.category"
+            />
+            <div
+                id="cetegoryHelp"
+                class="form-text"
+            >The category of the questions you want to answer. If not passed all categories will be used.</div>
         </div>
-        <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        <div class="mb-3">
+            <label for="difficulty" class="form-label">Difficulty</label>
+            <div class="form-check">
+                <input
+                    class="form-check-input"
+                    type="radio"
+                    name="difficulty"
+                    v-model="store.input.difficulty"
+                    value="all"
+                    id="all"
+                />
+                <label class="form-check-label" for="all">All</label>
+            </div>
+            <div class="form-check">
+                <input
+                    class="form-check-input"
+                    type="radio"
+                    name="difficulty"
+                    v-model="store.input.difficulty"
+                    value="easy"
+                    id="easy"
+                />
+                <label class="form-check-label" for="easy">Easy</label>
+            </div>
+            <div class="form-check">
+                <input
+                    class="form-check-input"
+                    type="radio"
+                    name="difficulty"
+                    v-model="store.input.difficulty"
+                    value="medium"
+                    id="medium"
+                />
+                <label class="form-check-label" for="medium">Medium</label>
+            </div>
+            <div class="form-check">
+                <input
+                    class="form-check-input"
+                    type="radio"
+                    name="difficulty"
+                    v-model="store.input.difficulty"
+                    value="hard"
+                    id="hard"
+                />
+                <label class="form-check-label" for="hard">Hard</label>
+            </div>
+            <div
+                id="difficultyHelp"
+                class="form-text"
+            >The difficulty of the questions you want to answer.</div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-primary" @click="store.startGame">Start Game</button>
     </form>
 </template>
 
 <style>
-
 </style>

@@ -5,9 +5,10 @@ import StartFormVue from './components/StartForm.vue'
 </script>
 
 <template>
-  <StartFormVue />  
+    <div class="container">
+        <StartFormVue />
+    </div>
 </template>
 
 <style>
-
 </style>

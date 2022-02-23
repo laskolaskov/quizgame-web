@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import { store } from '../data/store'
+import storage from '../data/storage'
 </script>
 
 <template>
@@ -13,7 +13,7 @@ import { store } from '../data/store'
                 class="form-control"
                 id="amount"
                 aria-describedby="amountHelp"
-                v-model="store.input.amount"
+                v-model="storage.input.amount"
                 min="0"
                 max="100"
             />
@@ -29,7 +29,7 @@ import { store } from '../data/store'
                 class="form-control"
                 id="category"
                 aria-describedby="cetegoryHelp"
-                v-model="store.input.category"
+                v-model="storage.input.category"
             />
             <div
                 id="cetegoryHelp"
@@ -43,7 +43,7 @@ import { store } from '../data/store'
                     class="form-check-input"
                     type="radio"
                     name="difficulty"
-                    v-model="store.input.difficulty"
+                    v-model="storage.input.difficulty"
                     value="all"
                     id="all"
                 />
@@ -54,7 +54,7 @@ import { store } from '../data/store'
                     class="form-check-input"
                     type="radio"
                     name="difficulty"
-                    v-model="store.input.difficulty"
+                    v-model="storage.input.difficulty"
                     value="easy"
                     id="easy"
                 />
@@ -65,7 +65,7 @@ import { store } from '../data/store'
                     class="form-check-input"
                     type="radio"
                     name="difficulty"
-                    v-model="store.input.difficulty"
+                    v-model="storage.input.difficulty"
                     value="medium"
                     id="medium"
                 />
@@ -76,7 +76,7 @@ import { store } from '../data/store'
                     class="form-check-input"
                     type="radio"
                     name="difficulty"
-                    v-model="store.input.difficulty"
+                    v-model="storage.input.difficulty"
                     value="hard"
                     id="hard"
                 />
@@ -87,7 +87,7 @@ import { store } from '../data/store'
                 class="form-text"
             >The difficulty of the questions you want to answer.</div>
         </div>
-        <button type="button" class="btn btn-primary" @click="store.startGame">Start Game</button>
+        <button type="button" class="btn btn-primary" @click="storage.startGame">Start Game</button>
     </form>
 </template>
 

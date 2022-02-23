@@ -3,7 +3,7 @@ import { Data } from "./types"
 
 const data: Data = {
     input: {
-        amount: 10n,
+        amount: 10,
         category: 'science',
         difficulty: 'all'
     }

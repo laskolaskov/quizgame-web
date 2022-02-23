@@ -6,7 +6,7 @@ export interface Data {
 }
 
 export interface UserInput {
-    amount: bigint,
+    amount: number,
     category: string,
     difficulty: string
 }

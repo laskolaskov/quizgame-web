@@ -5,7 +5,7 @@ import StartFormVue from './components/StartForm.vue'
 import app from './data/app'
 import Loading from './components/Loading.vue'
 import Error from './components/Error.vue'
-import Questions from './components/Questions.vue'
+import Game from './components/Game.vue'
 </script>
 
 <template>
@@ -26,7 +26,7 @@ import Questions from './components/Questions.vue'
         <div v-else>
             <Suspense>
                 <template #default>
-                    <Questions />
+                    <Game />
                 </template>
                 <template #fallback>
                     <Loading />

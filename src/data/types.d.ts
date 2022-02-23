@@ -1,7 +1,8 @@
 export interface Data {
     input: UserInput,
     categories: Category[],
-    questions: any,
+    questions: Question[],
+    current: number,
     interface: {
         error: boolean
     },

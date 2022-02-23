@@ -5,12 +5,13 @@ import { isCategoryResponse, isQuestionResponse, shuffle } from "./utils"
 
 const data: Data = {
     input: {
-        amount: 10,
+        amount: 3,
         category: 'science',
         difficulty: 'all'
     },
     categories: [],
     questions: [],
+    current: 0,
     interface: {
         error: false
     },
@@ -43,12 +44,19 @@ function setError() {
     state.interface.error = true
 }
 
+function nextQuestion() {
+    if(state.current < state.questions.length -1) {
+        state.current++
+    }
+}
+
 const app = {
     state: readonly(state),
     input: state.input,
     startGame,
     loadCategories,
     loadQuestions,
+    nextQuestion,
     interface: {
         setError,
     }

@@ -9,20 +9,11 @@ export async function getQuestions() {
         ...app.input
     }
 
-    const categories = {
-        ...app.state.categories
-    }
-
     /**
      * Basic validation
      */
-    if (params.category) {
-        for (let i in categories) {
-            if (categories[i].name.toLowerCase().indexOf(params.category.toLowerCase()) != -1) {
-                url += `&category=${categories[i].id}`
-                break
-            }
-        }
+    if (params.category > 0) {
+        url += `&category=${params.category}`
     }
 
     if (params.difficulty) {

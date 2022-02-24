@@ -4,7 +4,9 @@
 </script>
 
 <template>
-    <h1 class="text-danger">Error !</h1>
+    <div class="alert alert-danger">
+        <h1 class="text-danger">Error !</h1>
+    </div>
 </template>
 
 <style>

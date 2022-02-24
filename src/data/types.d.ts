@@ -6,12 +6,13 @@ export interface Data {
     interface: {
         error: boolean
     },
-    started: boolean
+    started: boolean,
+    finished: boolean
 }
 
 export interface UserInput {
     amount: number,
-    category: string,
+    category: number,
     difficulty: string
 }
 

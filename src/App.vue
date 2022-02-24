@@ -6,9 +6,14 @@ import app from './data/app'
 import Loading from './components/Loading.vue'
 import Error from './components/Error.vue'
 import Game from './components/Game.vue'
+import HeaderVue from './components/Header.vue'
+import FooterVue from './components/Footer.vue'
 </script>
 
 <template>
+    <div class="container my-3">
+        <HeaderVue />
+    </div>
     <div class="container">
         <div v-if="app.state.interface.error">
             <Error />
@@ -33,6 +38,9 @@ import Game from './components/Game.vue'
                 </template>
             </Suspense>
         </div>
+    </div>
+    <div class="container my-3">
+        <FooterVue />
     </div>
 </template>
 

@@ -3,7 +3,7 @@
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 import app from '../data/app'
 
-if(app.state.categories.length === 0) {
+if (app.state.categories.length === 0) {
     await app.loadCategories()
 }
 </script>
@@ -34,13 +34,10 @@ if(app.state.categories.length === 0) {
         </div>
         <div class="mb-3">
             <label for="category" class="form-label text-info">Category</label>
-            <input
-                type="text"
-                class="form-control"
-                id="category"
-                aria-describedby="cetegoryHelp"
-                v-model="app.input.category"
-            />
+            <select id="category" name="category" v-model="app.input.category" class="form-select" aria-label="Default select example">
+                <option value="0">All categories</option>
+                <option v-for="c in app.state.categories" :value="c.id">{{c.name}}</option>
+            </select>
             <div
                 id="cetegoryHelp"
                 class="form-text"

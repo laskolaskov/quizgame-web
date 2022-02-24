@@ -4,7 +4,9 @@
 </script>
 
 <template>
-    <h1 class="text-warning">LOADING...</h1>
+    <div class="alert alert-warning">
+        <h4 class="text-secondary">Loading...</h4>
+    </div>
 </template>
 
 <style>

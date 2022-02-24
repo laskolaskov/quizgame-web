@@ -6,7 +6,7 @@ import { isCategoryResponse, isQuestionResponse, shuffle } from "./utils"
 const data: Data = {
     input: {
         amount: 3,
-        category: 'science',
+        category: 0,
         difficulty: 'all'
     },
     categories: [],
@@ -15,10 +15,19 @@ const data: Data = {
     interface: {
         error: false
     },
-    started: false
+    started: false,
+    finished: false
 }
 
 const state = reactive(data)
+
+const question = computed(() => {
+    return state.questions[state.current]
+})
+
+const answeredQuestions = computed(() => {
+    return state.questions.filter((q) => q.isCorrect !== undefined)
+})
 
 async function startGame() {
     state.started = true
@@ -47,16 +56,37 @@ function setError() {
 function nextQuestion() {
     if(state.current < state.questions.length -1) {
         state.current++
+    } else {
+        state.finished = true
     }
+}
+
+function answerQuestion(answer: string) {
+    //update current question
+    question.value.isCorrect = answer === question.value.correct_answer
+    question.value.answer = answer
+    //go to next
+    nextQuestion()
+}
+
+function resetGame() {
+    state.started = false
+    state.finished = false
+    state.questions = []
+    state.current = 0
 }
 
 const app = {
     state: readonly(state),
     input: state.input,
+    q: question,
+    answeredQuestions,
     startGame,
+    resetGame,
     loadCategories,
     loadQuestions,
     nextQuestion,
+    answerQuestion,
     interface: {
         setError,
     }

@@ -9,10 +9,10 @@ import app from '../data/app'
         <div class="card-body">
             <h6
                 class="card-subtitle mb-2 text-muted"
-            >Created by Lasko Laskov</h6>
+            >Created by <a href="https://github.com/laskolaskov" target="_blank">Lasko Laskov</a></h6>
             <h6
                 class="card-subtitle mb-2 text-muted"
-            >Database from the amazing <a href="https://opentdb.com/">https://opentdb.com/</a>!</h6>
+            >Database from the amazing <a href="https://opentdb.com/" target="_blank">https://opentdb.com/</a>!</h6>
         </div>
     </div>
 </template>

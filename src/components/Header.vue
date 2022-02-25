@@ -8,7 +8,7 @@ import app from '../data/app'
     <div class="card">
         <div class="card-body">
             <h1 class="card-title">The BEST Quiz Game !</h1>
-            <button class="btn btn-danger" @click="app.resetGame">Reset</button>
+            <button v-if="!app.state.finished && app.state.started" class="btn btn-danger" @click="app.confirmResetGame">Reset</button>
         </div>
     </div>
 </template>

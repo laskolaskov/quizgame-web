@@ -1,6 +1,6 @@
 import { computed, reactive, readonly, watch, ref, toRaw } from "vue"
 import { getCategories, getQuestions } from "./api"
-import { Data, Question } from "./types"
+import { Data, Question, ResultByDifficulty } from "./types"
 import { isCategoryResponse, isQuestionResponse, shuffle } from "./utils"
 
 const data: Data = {
@@ -26,7 +26,7 @@ const question = computed(() => {
 })
 
 const answeredQuestions = computed(() => {
-    return state.questions.filter((q) => q.isCorrect !== undefined)
+    return state.questions.filter((q) => q.isCorrect !== undefined).reverse()
 })
 
 async function startGame() {
@@ -54,10 +54,11 @@ function setError() {
 }
 
 function nextQuestion() {
-    if(state.current < state.questions.length -1) {
+    if (state.current < state.questions.length - 1) {
         state.current++
     } else {
         state.finished = true
+        console.log(getResultsByDifficulty())
     }
 }
 
@@ -69,11 +70,57 @@ function answerQuestion(answer: string) {
     nextQuestion()
 }
 
+function getResultsByDifficulty() {
+    const init: ResultByDifficulty = {
+        easy: {
+            correct: 0,
+            total: 0,
+            p: 0
+        },
+        medium: {
+            correct: 0,
+            total: 0,
+            p: 0
+        },
+        hard: {
+            correct: 0,
+            total: 0,
+            p: 0
+        },
+        all: {
+            correct: 0,
+            total: 0,
+            p: 0
+        },
+    }
+    const result = state.questions.reduce((acc, q) => {
+        const d = q.difficulty as keyof ResultByDifficulty
+        acc[d].total++
+        acc.all.total++
+        if (q.isCorrect) {
+            acc[d].correct++
+            acc.all.correct++
+        }
+        return acc
+    }, init)
+    result.easy.p = Math.round((result.easy.correct / result.easy.total) * 100) || 0
+    result.medium.p = Math.round((result.medium.correct / result.medium.total) * 100) || 0
+    result.hard.p = Math.round((result.hard.correct / result.hard.total) * 100) || 0
+    result.all.p = Math.round((result.all.correct / result.all.total) * 100) || 0
+    return result
+}
+
 function resetGame() {
     state.started = false
     state.finished = false
     state.questions = []
     state.current = 0
+}
+
+function confirmResetGame() {
+    if(confirm('Do you want to start new game ? You will lose your progress.')) {
+        resetGame()
+    }
 }
 
 const app = {
@@ -83,10 +130,12 @@ const app = {
     answeredQuestions,
     startGame,
     resetGame,
+    confirmResetGame,
     loadCategories,
     loadQuestions,
     nextQuestion,
     answerQuestion,
+    getResultsByDifficulty,
     interface: {
         setError,
     }

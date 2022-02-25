@@ -4,6 +4,7 @@
 import app from '../data/app'
 import Question from './Question.vue';
 import Answers from './Answers.vue';
+import Result from './Result.vue';
 
 if (app.state.questions.length === 0) {
     await app.loadQuestions()
@@ -15,8 +16,7 @@ if (app.state.questions.length === 0) {
         <Question />
     </div>
     <div v-else>
-        <h1 class="text-success">Done !!!</h1>
-        <button class="btn btn-success" @click="app.resetGame">New game</button>
+        <Result />
     </div>
     <Answers />
 </template>

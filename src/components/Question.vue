@@ -15,14 +15,14 @@ import he from 'he'
             <!-- <p class="card-text"></p> -->
             <!-- <button v-for="a in app.q.value.answers" class="btn">{{ a }}</button> -->
             <ul class="list-group list-group-flush mt-3">
-                <li v-for="a in app.q.value.answers" @click="app.answerQuestion(a)" class="list-group-item highlighted">{{ a }}</li>
+                <li v-for="a in app.q.value.answers" @click="app.answerQuestion(a)" class="list-group-item highlighted">{{ he.decode(a) }}</li>
             </ul>
         </div>
     </div>
 </template>
 
 <style>
-.highlighted:hover {
+/* .highlighted:hover {
     background-color: gold;
-}
+} */
 </style>

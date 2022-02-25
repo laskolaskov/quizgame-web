@@ -42,6 +42,29 @@ export interface QuestionResponse {
     results: Question[]
 }
 
+export interface ResultByDifficulty {
+    easy: {
+        correct: number,
+        total: number,
+        p: number
+    },
+    medium: {
+        correct: number,
+        total: number,
+        p: number
+    },
+    hard: {
+        correct: number,
+        total: number,
+        p: number
+    },
+    all: {
+        correct: number,
+        total: number,
+        p: number
+    }
+}
+
 export const enum Phase {
     Start = 1,
     Questions = 2,

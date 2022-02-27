@@ -5,7 +5,7 @@ import { isCategoryResponse, isQuestionResponse, shuffle } from "./utils"
 
 const data: Data = {
     input: {
-        amount: 3,
+        amount: 10,
         category: 0,
         difficulty: 'all'
     },
